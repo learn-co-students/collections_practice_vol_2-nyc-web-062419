@@ -51,48 +51,25 @@ def count_elements (array)
     already_exist = []
 
     array.each do |hash|
-        hash.each do |key, value|
-            if already_exist.include?(value)
-                counted.each do |element|
-                    if element.include?(value)
-                        element.each do |key, value|
-                            if key == :count
-                                value += 1
-                            end
-                        end
-                    end
-                end
-            
-            end
-        end
-
-            element.each do |key, value|
-                if hash.values.include?(value)
-                    element.each do |key, value|
-                        if key == :count
-                            value += 1
-                        end
-                    end
-                end
- 
         if already_exist.include?(hash)
-           
-            counted.each do |element|
-                if element == hash
-                    element.each do |key, value|
-                        if key == :count
-                            value += 1
+            hash.each do |hash_key, hash_value|
+                counted.each do |element|
+                    if element.values.include?(hash_value)
+                        element.collect do |key, value|
+                            if key == :count
+                                element[:count] += 1
+                            end
                         end
                     end
                 end
             end
         else
-            already_exist << hash
+            hash_clone = hash.clone
+            already_exist << hash_clone
             counted << hash
             counted[counted.length-1][:count] = 1
         end
     end
     counted
-    already_exist
 end
 # your code goes here
