@@ -72,4 +72,52 @@ def count_elements (array)
     end
     counted
 end
+
+def merge_data (structure1, structure2)
+    merged_data = [{},{}]
+    i = 0
+    structure1.each do |hash| 
+        hash.each do |key, values|
+            merged_data[i][key] = values
+        end
+        i += 1
+    end
+    i = 0
+    structure2.each do |hash|
+        hash.each do |key_name, values|
+            values.each do |key, value|
+                merged_data[i][key] = value
+            end
+            i +=1
+        end
+    end
+    merged_data
+end
+
+def find_cool (array)
+    cool_hashes = []
+    
+    array.each do |hash|
+        if hash.values.include? "cool"
+            cool_hashes << hash
+        end
+    end
+    cool_hashes
+end
+
+def organize_schools (array)
+    schools_by_location = {}
+
+    array.each do |school, location_hash|
+        location_hash.each do |key, value|
+            if schools_by_location.keys.include? (value)
+                schools_by_location[value] << school
+            else
+                schools_by_location[value] = [school]
+            end
+        end
+    end
+
+    schools_by_location
+end
 # your code goes here
